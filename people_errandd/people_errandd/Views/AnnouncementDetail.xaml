@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="people_errandd.Views.AnnouncementDetail" 
+             BackgroundColor="#EDEEEF">
+    <NavigationPage.TitleView>
+        <Label Text="公告" TextColor="#555555" FontSize="20" HorizontalTextAlignment="Center"  FontAttributes="Bold"  VerticalTextAlignment="Center" Margin="-15,0,0,0"></Label>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Margin="20,20,20,0">
+            <Label TextColor="#555555" FontSize="16" Text="這裡是公告內容"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

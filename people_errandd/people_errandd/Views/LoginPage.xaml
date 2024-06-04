@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="people_errandd.Views.LoginPage"
+             xmlns:st="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" 
+              BackgroundColor="#EDEEEF">
+    <!--內容樣式設定-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="title" TargetType="Label">
+                <Setter Property="TextColor" Value="#9E9E9E" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="40" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="content" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Margin" Value="0,40,0,0" />
+            </Style>
+            <Style x:Key="entry" TargetType="Entry">
+                <Setter Property="ClearButtonVisibility" Value="WhileEditing" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="#9E9E9E" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            <Style x:Key="Button" TargetType="Button">
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="50,0,50,0" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="#34549E" />
+                <Setter Property="Opacity" Value="0.8" />
+            </Style>
+            <Style x:Key="Question" TargetType="Button">
+                <Setter Property="WidthRequest" Value="100" />
+                <Setter Property="CornerRadius" Value="15" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="#9E9E9E" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="Opacity" Value="0.8" />
+            </Style>
+            <Style x:Key="line" TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="#807D7D"/>
+                <Setter Property="HeightRequest" Value="1"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="Margin" Value="50,0,50,0"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <!--內容樣式設定結束-->
+    <Grid  x:Name="RootContainer"
+            BackgroundColor="#EDEEEF"
+            ColumnDefinitions="*,Auto"
+            RowDefinitions="5*,*">
+        <!--設置背景深藍色-->
+        <Frame  Margin="0,-75,-10,150"
+                x:Name="transition"
+                HasShadow="False"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="White"
+                CornerRadius="40">
+            <Frame.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="0,-75,-10,150" />
+                    <On Platform="Android" Value="0,-75,-10,135" />
+                </OnPlatform>
+            </Frame.Margin>
+            <ScrollView VerticalScrollBarVisibility="Never">
+                <StackLayout Orientation="Vertical" Spacing="10">
+                    <Grid Grid.Row="0" ColumnDefinitions="*,Auto" RowDefinitions="1.2*,*" RowSpacing="5">
+                        <Grid.Margin>
+                            <OnIdiom x:TypeArguments="Thickness">
+                                <OnIdiom.Phone>0,0,0,0</OnIdiom.Phone>
+                                <OnIdiom.Tablet>0,170,0,0</OnIdiom.Tablet>
+                            </OnIdiom>
+                        </Grid.Margin>
+                        <!--Punch標題-->
+                        <Label Text="Punch." Style="{StaticResource title}" Grid.Row="1"></Label>
+                        <!--Punch圖片-->
+                        <Image Source="logo" WidthRequest="70" HeightRequest="70" Grid.Row="2" x:Name="image" />
+                    </Grid>
+                 
+                        <!--組織ID標題-->
+                    <Grid Grid.Row="1" ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" Margin="0,5,0,5">
+                        <Entry x:Name="company" Unfocused="CompanyIdChecked"   Placeholder=" 請輸入組織ID" Style="{StaticResource entry}" Grid.Row="0">
+                            <Entry.Margin>
+                                <OnPlatform x:TypeArguments="Thickness">
+                                    <On Platform="iOS" Value="48,0,48,5" />
+                                    <On Platform="Android" Value="45,0,45,-10" />
+                                </OnPlatform>
+                            </Entry.Margin>
+                        </Entry>
+                        <BoxView Style="{StaticResource line}" Grid.Row="1"/>
+                    </Grid>
+                    
+                    
+                        <!--輸入組織ID-->
+                    <Grid Grid.Row="2" ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" RowSpacing="10">
+                        <Button x:Name="button" Text="登入" Style="{StaticResource Button}" Clicked="LogInButton" Grid.Row="1" Pressed="OnLogInButtonPressed"/>
+                        <!--登入按鈕-->
+                        <!-- <Button  Text="繼承資料" x:Name="Test" Style="{StaticResource Button}" Clicked="Test_Clicked"  Grid.Row="3" Margin="0,0,0,15" />-->
+                        <Button  Text="如何使用" x:Name="question" Style="{StaticResource Question}" Clicked="QuestionButton" Grid.Row="2" />
+                    </Grid>
+                    <StackLayout>
+                        <ActivityIndicator x:Name="loading" IsRunning="False" Margin="0,-20,0,0"/>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+
+        </Frame>
+    </Grid>
+</ContentPage>

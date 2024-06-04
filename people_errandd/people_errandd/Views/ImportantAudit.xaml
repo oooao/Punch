@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:people_errandd.ViewModels"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:Viewmodels="clr-namespace:people_errandd.ViewModels"
+             ios:Page.UseSafeArea="true" 
+             BackgroundColor="#EDEEEF"
+             x:Class="people_errandd.Views.ImportantAudit">
+
+    <NavigationPage.TitleView>
+        <Label Text="重要審核" TextColor="#555555" FontSize="20" HorizontalTextAlignment="Center"  FontAttributes="Bold"  VerticalTextAlignment="Center" Margin="-15,0,0,0"></Label>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            
+            <Style x:Key="datetitle" TargetType="Label">
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="Margin" Value="12,0,0,0" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style x:Key="datebutton" TargetType="Button">
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="TextColor" Value="#555555" />
+                <Setter Property="WidthRequest" Value="40" />
+                <Setter Property="Margin" Value="0,5,0,0" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="BackgroundColor" Value="White" />
+            </Style>
+            <Style x:Key="date" TargetType="DatePicker">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="WidthRequest" Value="250" />
+                <Setter Property="HeightRequest" Value="30" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="0,0,0,0" />
+                <Setter Property="TextColor" Value="#555555" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Format" Value="yyyy-MM-dd (dddd)" />
+            </Style>
+            <Style x:Key="select" TargetType="ImageButton">
+                <Setter Property="BackgroundColor" Value="#EDEEEF"/>
+                <Setter Property="Margin" Value="10,-44,-15,0"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="Padding" Value="9"/>
+                <Setter Property="Source" Value="a14"/>
+                <Setter Property="HorizontalOptions" Value="End"/>
+                <Setter Property="HeightRequest" Value="50"/>
+            </Style>
+            <Style x:Key="Collection" TargetType="CollectionView">
+                <Setter Property="Margin" Value="0,0,0,0"/>
+                <Setter Property="HorizontalOptions" Value="End"/>
+                <Setter Property="SelectionMode" Value="None"/>
+                <Setter Property="VerticalScrollBarVisibility" Value="Never"/>
+            </Style>
+
+            <Style x:Key="line" TargetType="BoxView">
+                <Setter Property="Margin" Value="0,0,25,0"/>
+                <Setter Property="BackgroundColor" Value="#807D7D"/>
+                <Setter Property="HeightRequest" Value="5"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style x:Key="gooutanddayoff" TargetType="Label">
+                <Setter Property="Margin" Value="0,10,0,0"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="TextColor" Value="#5C76B1"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+            <Style x:Key="gooutanddayofftitle" TargetType="Label">
+                <Setter Property="TextColor" Value="#555555"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+            </Style>
+            <Style x:Key="gooutanddayoffcontent" TargetType="Label">
+                <Setter Property="TextColor" Value="#969696"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="14"/>
+              
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <Label Text="請假申請" FontSize="20" TextColor="#555555" Margin="20" FontAttributes="Bold"></Label>
+
+        <ImageButton   Grid.Row="0" Grid.Column="2"  Style="{StaticResource select}" Margin="0,-60,15,0"></ImageButton>
+        <CollectionView Grid.Row="1" Style="{StaticResource Collection}" x:Name="Audits" >
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate  >
+                    <Grid  x:Name="RootContainer"
+            BackgroundColor="#EDEEEF"
+            ColumnDefinitions="*,Auto"
+            RowDefinitions="*,10">
+                        <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  WidthRequest="2000" Margin="15,0,10,15"   BackgroundColor="White">
+                            <Frame.HasShadow>
+                                <OnPlatform x:TypeArguments="x:Boolean">
+                                    <On Platform="iOS" Value="False" />
+                                    <On Platform="Android" Value="True" />
+                                </OnPlatform>
+                            </Frame.HasShadow>
+                            <StackLayout>
+                                <Grid Grid.Row="0" ColumnSpacing="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition>
+                                            <ColumnDefinition.Width>
+                                                <OnIdiom x:TypeArguments="GridLength" Tablet="3.6*" Phone="1*" />
+                                            </ColumnDefinition.Width>
+                                        </ColumnDefinition>
+                                        <ColumnDefinition>
+                                            <ColumnDefinition.Width>
+                                                <OnIdiom x:TypeArguments="GridLength" Tablet="6.2*" Phone="5*" />
+                                            </ColumnDefinition.Width>
+                                        </ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <OnIdiom x:TypeArguments="View">
+                                        <OnIdiom.Phone >
+                                            <Image HeightRequest="50" Source="nerd.png" HorizontalOptions="Start" VerticalOptions="Start"  Grid.Row="0"  Grid.Column="0" />
+                                        </OnIdiom.Phone>
+                                        <OnIdiom.Tablet >
+                                            <Image HeightRequest="50" Source="nerd.png" HorizontalOptions="End" VerticalOptions="Start" Margin="0,0,50,0"  Grid.Row="0"  Grid.Column="0" />
+                                        </OnIdiom.Tablet>
+                                    </OnIdiom>
+                                    <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="36, 36, 36, Auto" ColumnDefinitions="3.7*, 8.5*">
+                                        
+                                        <Label x:Name="RecordId" Text="{Binding LeaveRecordId}" IsVisible="false"  Grid.Row="0" Grid.Column="0"></Label>
+                                        <Label Style="{StaticResource gooutanddayofftitle}" Text="開始時間 :" Grid.Row="0" Grid.Column="0"></Label>
+                                        <Label  Style="{StaticResource gooutanddayoffcontent}"
+                                            Text="{Binding StartDate}"
+                                            TextColor="#5C76B1" Grid.Row="0" Grid.Column="1">
+                                       
+                                        </Label>
+                                        <Label  Style="{StaticResource gooutanddayofftitle}"
+                                            Text="結束時間 :" Grid.Row="1" Grid.Column="0"></Label>
+                                        <Label Style="{StaticResource gooutanddayoffcontent}"
+                                            Text="{Binding EndDate}"
+                                            TextColor="#5C76B1" Grid.Row="1" Grid.Column="1">
+                                          
+                                        </Label>
+                                        <Label  Style="{StaticResource gooutanddayofftitle}"
+                                            Text="申請人員 :" Grid.Row="2" Grid.Column="0"></Label>
+                                        <Label Style="{StaticResource gooutanddayoffcontent}"
+                                            Text="{Binding Name}" Grid.Row="2" Grid.Column="1"></Label>
+                                        <Label Style="{StaticResource gooutanddayofftitle}"
+                                            Text="請假事由 :" Grid.Row="3" Grid.Column="0"></Label>
+                                        <Label Style="{StaticResource gooutanddayoffcontent}"
+                                            Text="{Binding Reason}"  Grid.Row="3" Grid.Column="1"></Label>
+                                    </Grid>
+                            </Grid>
+                                <Grid Grid.Row="1" Margin="0,10,0,0">
+                                    <Button Text="核准" Grid.Row="0" Grid.Column="2" Clicked="Review" CommandParameter="{Binding LeaveRecordId}" TextColor="#5C76B1" BackgroundColor="#D5DEF3" WidthRequest="60" HeightRequest="30" FontSize="14" Padding="5">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="AgreeButton">
+                                                <VisualState x:Name="Normal">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="BackgroundColor" Value="#D5DEF3"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                                <VisualState x:Name="Pressed">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="BackgroundColor" Value="#C2D2F6"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                    </Button>
+                                    <Button Text="拒絕"  Grid.Row="0" Grid.Column="3" Clicked="Reject"  CommandParameter="{Binding LeaveRecordId}" TextColor="#CA4848" BackgroundColor="#FFBDBD" WidthRequest="60" HeightRequest="25" FontSize="14" Padding="5">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="AgreeButton">
+                                                <VisualState x:Name="Normal">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="BackgroundColor" Value="#FFBDBD"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                                <VisualState x:Name="Pressed">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="BackgroundColor" Value="#F5B3B3"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                    </Button>
+                                </Grid>
+                            </StackLayout>
+                            
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+    </StackLayout>
+
+</ContentPage>

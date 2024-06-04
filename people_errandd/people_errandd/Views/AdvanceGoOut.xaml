@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true" 
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:Viewmodels="clr-namespace:people_errandd.ViewModels"
+    x:Class="people_errandd.Views.AdvanceGoOut">
+
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation DurationIn="400"
+                                   DurationOut="300"
+                                   EasingIn="SinOut"
+                                   EasingOut="SinIn"
+                                   HasBackgroundAnimation="True"
+                                   PositionIn="Center"
+                                   PositionOut="Center"
+                                   ScaleIn="1.2"
+                                   ScaleOut="0.8" />
+    </pages:PopupPage.Animation>
+    <pages:PopupPage.BindingContext>
+        <Viewmodels:AdvanceGoOutViewModel/>
+    </pages:PopupPage.BindingContext>
+    
+    
+
+<Grid BackgroundColor="White" VerticalOptions="Center" Margin="30" HeightRequest="350">
+        <Label Grid.Row="0" x:Name="PageTitle"  Text="請選擇" TextColor="#555555" FontSize="Large" HorizontalTextAlignment="Center" Margin="0,30,0,0"/>
+        <ScrollView Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" HorizontalScrollBarVisibility="Never">
+        <StackLayout  Orientation="Horizontal" Grid.Row="1" HorizontalOptions="Center" Margin="10" >
+                <Frame x:Name="Start" BackgroundColor="#FBDDAA" HasShadow="False" CornerRadius="10" Margin="10,0,10,0" WidthRequest="75" IsEnabled="{Binding CanTrip }" Opacity="{Binding TripOpacity}">
+                    <Frame.GestureRecognizers >
+                        <TapGestureRecognizer  Command="{Binding StartTripCommand}" Tapped="StartTripTapped"  />
+                    </Frame.GestureRecognizers>
+                    <StackLayout Margin="0,20,0,0">
+                    <Image Source="startgoout.png" HeightRequest="50"/>
+                        <Label Text="公出開始" HorizontalOptions="Center" TextColor="#555555"  FontSize="16"/>
+                </StackLayout>
+            </Frame>
+                <Frame x:Name="Arrival" HorizontalOptions="Center" BackgroundColor="#F5B3B3" HasShadow="False" CornerRadius="10" Margin="10,0,10,0" WidthRequest="75" IsEnabled="{Binding CanBack}" Opacity="{Binding BackOpacity}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ArrivalCommand}" Tapped="ArrivalTapped"/>
+                    </Frame.GestureRecognizers>
+                    <StackLayout Margin="0,20,0,0">
+                    <Image Source="stop.png" HeightRequest="50"/>
+                        <Label Text="到站" HorizontalOptions="Center" TextColor="#555555"  FontSize="16"/>
+                </StackLayout>
+            </Frame>
+                <Frame x:Name="Back" HorizontalOptions="Center" BackgroundColor="#C2D2F6" HasShadow="False" CornerRadius="10" Margin="10,0,10,0" WidthRequest="75" IsEnabled="{Binding CanBack}" Opacity="{Binding BackOpacity}" >
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCommand}" Tapped="BackTapped"/>
+                    </Frame.GestureRecognizers>
+                    <StackLayout Margin="0,20,0,0">
+                    <Image Source="finishgoout.png" HeightRequest="50"/>
+                        <Label Text="公出結束" HorizontalOptions="Center" TextColor="#555555" FontSize="16" />
+                </StackLayout>
+                    
+            </Frame>
+        </StackLayout>
+        </ScrollView>
+    </Grid>
+
+</pages:PopupPage>

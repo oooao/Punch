@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:people_errandd.Views"         
+             x:Class="people_errandd.Views.Record"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" 
+             BackgroundColor="#EDEEEF">
+    <!--最上面Navigation標題-->
+    <NavigationPage.TitleView>
+        <Label Text="查看紀錄" HorizontalTextAlignment="Center" TextColor="#555555" FontAttributes="Bold" FontSize="20" VerticalTextAlignment="Center" Margin="-15,0,0,0"></Label>
+    </NavigationPage.TitleView>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <!--<ContentPage.BindingContext>
+        <viewmodels:RecordViewModels  />
+    </ContentPage.BindingContext>-->
+
+    <!--內容樣式設定-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="datetitle" TargetType="Label">
+                <Setter Property="FontSize" Value="14.5" />
+                <Setter Property="Margin" Value="7.5,0,0,0" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style x:Key="datebutton" TargetType="Button">
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="TextColor" Value="#555555" />
+                <Setter Property="FontSize" Value="13.5" />
+                <Setter Property="WidthRequest" Value="40" />
+                <Setter Property="Margin" Value="-6,8,0,0" />
+                <Setter Property="CornerRadius" Value="18" />
+                <Setter Property="BackgroundColor" Value="White" />
+            </Style>
+            <Style x:Key="date" TargetType="DatePicker">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="HeightRequest" Value="30" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="0,0,25,0" />
+                <Setter Property="TextColor" Value="#555555" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Format" Value="yyyy-MM-dd (dddd)" />
+            </Style>
+            <Style x:Key="titletext" TargetType="Label">
+                <Setter Property="TextColor" Value="#555555" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+            <Style x:Key="select" TargetType="ImageButton">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="Margin" Value="25,-44,-15,0"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="Padding" Value="9"/>
+                <Setter Property="Source" Value="a14"/>
+                <Setter Property="HorizontalOptions" Value="End"/>
+                <Setter Property="HeightRequest" Value="50"/>
+            </Style>
+            <Style x:Key="Collection" TargetType="CollectionView">
+                <Setter Property="Margin" Value="0,20,0,0"/>
+                <Setter Property="HorizontalOptions" Value="End"/>
+                <Setter Property="SelectionMode" Value="None"/>
+                <Setter Property="VerticalScrollBarVisibility" Value="Never"/>
+            </Style>
+
+            <Style x:Key="line" TargetType="BoxView">
+                <Setter Property="Margin" Value="0,0,25,0"/>
+                <Setter Property="BackgroundColor" Value="#807D7D"/>
+                <Setter Property="HeightRequest" Value="5"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style x:Key="gooutanddayoff" TargetType="Label">
+                <Setter Property="Margin" Value="0,10,0,0"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="TextColor" Value="#5C76B1"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+            <Style x:Key="gooutanddayofftitle" TargetType="Label">
+                <Setter Property="TextColor" Value="#555555"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
+            <Style x:Key="gooutanddayoffcontent" TargetType="Label">
+                <Setter Property="TextColor" Value="#969696"/>
+                <Setter Property="HorizontalOptions" Value="End"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
+
+            <DataTemplate x:Key="WorkRecord">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="0.8" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" WidthRequest="2000" Margin="-5,0,-20,20" BackgroundColor="White">
+                        <Frame.HasShadow>
+                            <OnPlatform x:TypeArguments="x:Boolean">
+                                <On Platform="iOS" Value="False" />
+                                <On Platform="Android" Value="True" />
+                            </OnPlatform>
+                        </Frame.HasShadow>
+                        <StackLayout>
+                            <Grid  ColumnDefinitions="*,Auto" HorizontalOptions="Center">
+                                <Grid Grid.Row="0" ColumnSpacing="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition>
+                                            <ColumnDefinition.Width>
+                                                <OnIdiom x:TypeArguments="GridLength" Tablet="4*" Phone="1*" />
+                                            </ColumnDefinition.Width>
+                                        </ColumnDefinition>
+                                        <ColumnDefinition>
+                                            <ColumnDefinition.Width>
+                                                <OnIdiom x:TypeArguments="GridLength" Tablet="5.8*" Phone="4*" />
+                                            </ColumnDefinition.Width>
+                                        </ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <OnIdiom x:TypeArguments="View">
+                                        <OnIdiom.Phone >
+                                            <Image HeightRequest="50" Source="{Binding image}" HorizontalOptions="Start" VerticalOptions="Start"  Grid.Row="0"  Grid.Column="0" />
+                                        </OnIdiom.Phone>
+                                        <OnIdiom.Tablet >
+                                            <Image HeightRequest="50" Source="{Binding image}" HorizontalOptions="End" VerticalOptions="Start" Margin="0,0,50,0"  Grid.Row="0"  Grid.Column="0" />
+                                        </OnIdiom.Tablet>
+                                    </OnIdiom>
+                                    <Grid Grid.Row="0" Grid.Column="1"  RowDefinitions="5*,5*" ColumnDefinitions="2*, 11*">
+                                    <Label Style="{StaticResource gooutanddayofftitle}" Text="狀態 :" Grid.Row="0" Grid.Column="0"></Label>
+                                    <Label   TextColor="{Binding statuscolor}"
+                                             Style="{StaticResource gooutanddayoffcontent}"
+                                            Text="{Binding status}"
+                                                HorizontalOptions="Start"
+                                            Grid.Row="0" Grid.Column="1"></Label>
+                                    <Label  Style="{StaticResource gooutanddayofftitle}"
+                                            Text="時間 :" Grid.Row="1" Grid.Column="0"></Label>
+                                    <Label Style="{StaticResource gooutanddayoffcontent}"
+                                            Text="{Binding time}"
+                                               HorizontalOptions="Start"
+                                            Grid.Row="1" Grid.Column="1"></Label>
+                                    
+                                 
+                                </Grid>
+                            </Grid>
+                            </Grid>
+                        </StackLayout>
+
+                    </Frame>
+
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="DayOffRecord">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="0.8" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid  x:Name="RootContainer"
+            BackgroundColor="#EDEEEF"
+            ColumnDefinitions="*,Auto"
+            RowDefinitions="*,10">
+                        <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" WidthRequest="2000" Margin="-5,0,-20,20" BackgroundColor="White">
+                            <Frame.HasShadow>
+                                <OnPlatform x:TypeArguments="x:Boolean">
+                                    <On Platform="iOS" Value="False" />
+                                    <On Platform="Android" Value="True" />
+                                </OnPlatform>
+                            </Frame.HasShadow>
+                            <StackLayout >
+                                <Grid ColumnDefinitions="*,Auto" HorizontalOptions="Center">
+                                    <Grid Grid.Row="0" ColumnSpacing="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition>
+                                                <ColumnDefinition.Width>
+                                                    <OnIdiom x:TypeArguments="GridLength" Tablet="3.6*" Phone="1*" />
+                                                </ColumnDefinition.Width>
+                                            </ColumnDefinition>
+                                            <ColumnDefinition>
+                                                <ColumnDefinition.Width>
+                                                    <OnIdiom x:TypeArguments="GridLength" Tablet="6.2*" Phone="5*" />
+                                                </ColumnDefinition.Width>
+                                            </ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <OnIdiom x:TypeArguments="View">
+                                            <OnIdiom.Phone >
+                                                <Image HeightRequest="50" Source="{Binding image}" HorizontalOptions="Start" VerticalOptions="Start"  Grid.Row="0"  Grid.Column="0" />
+                                            </OnIdiom.Phone>
+                                            <OnIdiom.Tablet >
+                                                <Image HeightRequest="50" Source="{Binding image}" HorizontalOptions="End" VerticalOptions="Start" Margin="0,0,50,0"  Grid.Row="0"  Grid.Column="0" />
+                                            </OnIdiom.Tablet>
+                                        </OnIdiom>
+
+                                        <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="36, 36, 36, 36,36,Auto" ColumnDefinitions="4*, 11*" >
+                                        <Label Style="{StaticResource gooutanddayofftitle}" Text="開始時間 :" Grid.Row="0" Grid.Column="0"></Label>
+                                        <Label  Style="{StaticResource gooutanddayoffcontent}"
+                                            Text="{Binding StartDate}"
+                                                HorizontalOptions="Start"
+                                            TextColor="#5C76B1" Grid.Row="0" Grid.Column="1">
+                                               
+                                            </Label>
+                                        <Label  Style="{StaticResource gooutanddayofftitle}"
+                                            Text="結束時間 :" Grid.Row="1" Grid.Column="0"></Label>
+                                        <Label Style="{StaticResource gooutanddayoffcontent}"
+                                            Text="{Binding EndDate}"
+                                               HorizontalOptions="Start"
+                                            TextColor="#5C76B1" Grid.Row="1" Grid.Column="1">
+                                               
+                                            </Label>
+                                        <Label  Style="{StaticResource gooutanddayofftitle}"
+                                            Text="申請日期 :" Grid.Row="2" Grid.Column="0"></Label>
+                                        <Label  Style="{StaticResource gooutanddayoffcontent}"
+                                                HorizontalOptions="Start"
+                                             Text="{Binding createdTime, StringFormat='{0:yyyy/MM/dd}'}"  Grid.Row="2" Grid.Column="1"></Label>
+                                        <Label Style="{StaticResource gooutanddayofftitle}"
+                                            Text="請假假別 :" Grid.Row="3" Grid.Column="0"></Label>
+                                        <Label Style="{StaticResource gooutanddayoffcontent}"
+                                               HorizontalOptions="Start"
+                                            Text="{Binding LeaveType}"  Grid.Row="3" Grid.Column="1"></Label>
+                                        <Label Style="{StaticResource gooutanddayofftitle}"
+                                            Text="審核狀態 :" Grid.Row="4" Grid.Column="0"></Label>
+                                        <Label Style="{StaticResource gooutanddayoffcontent}"
+                                               HorizontalOptions="Start"
+                                            Text="{Binding status}"  Grid.Row="4" Grid.Column="1"></Label>
+                                        <Label Style="{StaticResource gooutanddayofftitle}"
+                                            Text="請假原因 :" Grid.Row="5" Grid.Column="0"></Label>
+                                        <Label Style="{StaticResource gooutanddayoffcontent}"
+                                               HorizontalOptions="Start"
+                                            Text="{Binding Reason}"  Grid.Row="5" Grid.Column="1"></Label>
+                                        
+                                    </Grid>
+                                    </Grid>
+                                </Grid>
+                                
+                            </StackLayout>
+
+                        </Frame>
+                    </Grid>
+                </Grid>
+            </DataTemplate> 
+            <DataTemplate  x:Key="GoOutRecord">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="0.8" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" WidthRequest="2000" Margin="-5,0,-20,20" BackgroundColor="White">
+                        <Frame.HasShadow>
+                            <OnPlatform x:TypeArguments="x:Boolean">
+                                <On Platform="iOS" Value="False" />
+                                <On Platform="Android" Value="True" />
+                            </OnPlatform>
+                        </Frame.HasShadow>
+                        <StackLayout>
+                            <Grid  ColumnDefinitions="*,Auto" HorizontalOptions="Center">
+                                <Grid Grid.Row="0" ColumnSpacing="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition>
+                                            <ColumnDefinition.Width>
+                                                <OnIdiom x:TypeArguments="GridLength" Tablet="3.6*" Phone="1*" />
+                                            </ColumnDefinition.Width>
+                                        </ColumnDefinition>
+                                        <ColumnDefinition>
+                                            <ColumnDefinition.Width>
+                                                <OnIdiom x:TypeArguments="GridLength" Tablet="6.2*" Phone="5*" />
+                                            </ColumnDefinition.Width>
+                                        </ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <OnIdiom x:TypeArguments="View">
+                                        <OnIdiom.Phone >
+                                            <Image HeightRequest="50" Source="{Binding image}" HorizontalOptions="Start" VerticalOptions="Start"  Grid.Row="0"  Grid.Column="0" />
+                                        </OnIdiom.Phone>
+                                        <OnIdiom.Tablet >
+                                            <Image HeightRequest="50" Source="{Binding image}" HorizontalOptions="End" VerticalOptions="Start" Margin="0,0,50,0" Grid.Row="0"  Grid.Column="0" />
+                                        </OnIdiom.Tablet>
+                                    </OnIdiom>
+
+                                    <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="36, 36, 36, 36,Auto" ColumnDefinitions="4*, 9*">
+                                        <Label Style="{StaticResource gooutanddayofftitle}"
+                                            Text="開始時間 :" Grid.Row="0" Grid.Column="0"></Label>
+                                        <Label 
+                                             Style="{StaticResource gooutanddayoffcontent}"
+                                            Text="{Binding StartDate}"
+
+                                                HorizontalOptions="Start"
+                                            TextColor="#5C76B1" Grid.Row="0" Grid.Column="1">
+                                           
+                                        </Label>
+                                        <Label  Style="{StaticResource gooutanddayofftitle}"
+                                            Text="結束時間 :" Grid.Row="1" Grid.Column="0"></Label>
+                                        <Label Style="{StaticResource gooutanddayoffcontent}"
+                                            Text="{Binding EndDate}"
+                                             
+                                               HorizontalOptions="Start"
+                                            TextColor="#5C76B1" Grid.Row="1" Grid.Column="1">
+                                         
+                                        </Label>
+                                        <Label  Style="{StaticResource gooutanddayofftitle}"
+                                            Text="申請日期 :" Grid.Row="2" Grid.Column="0"></Label>
+                                        <Label  Style="{StaticResource gooutanddayoffcontent}"
+                                                HorizontalOptions="Start"
+                                              Text="{Binding createdTime, StringFormat='{0:yyyy/MM/dd}'}"    Grid.Row="2" Grid.Column="1"></Label>
+                                        <Label Style="{StaticResource gooutanddayofftitle}"
+                                           Text="公出地點 :" Grid.Row="3" Grid.Column="0"></Label>
+                                        <Label Style="{StaticResource gooutanddayoffcontent}"
+                                               HorizontalOptions="Start"
+                                           Text="{Binding Location}" Grid.Row="3" Grid.Column="1"></Label>
+                                        <Label Style="{StaticResource gooutanddayofftitle}"
+                                            Text="公出事由 :" Grid.Row="4" Grid.Column="0"></Label>
+                                        <Label Style="{StaticResource gooutanddayoffcontent}"
+                                               HorizontalOptions="Start"
+                                           Text="{Binding Reason}"  Grid.Row="4" Grid.Column="1"></Label>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+
+                        </StackLayout>
+
+                    </Frame>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="AdvanceGoOutRecord">
+
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="0.8" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" WidthRequest="2000" Margin="-5,0,-20,20" BackgroundColor="White">
+                        <Frame.HasShadow>
+                            <OnPlatform x:TypeArguments="x:Boolean">
+                                <On Platform="iOS" Value="False" />
+                                <On Platform="Android" Value="True" />
+                            </OnPlatform>
+                        </Frame.HasShadow>
+                        <StackLayout>
+                            <Grid>
+                                <Grid Grid.Row="0"  ColumnSpacing="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition>
+                                            <ColumnDefinition.Width>
+                                                <OnIdiom x:TypeArguments="GridLength" Tablet="3.6*" Phone="1*" />
+                                            </ColumnDefinition.Width>
+                                        </ColumnDefinition>
+                                        <ColumnDefinition>
+                                            <ColumnDefinition.Width>
+                                                <OnIdiom x:TypeArguments="GridLength" Tablet="6.2*" Phone="4*" />
+                                            </ColumnDefinition.Width>
+                                        </ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <OnIdiom x:TypeArguments="View">
+                                        <OnIdiom.Phone >
+                                            <Image HeightRequest="50" Source="{Binding advanceimage}" HorizontalOptions="Start" VerticalOptions="Start" Margin="10,0,0,0"  Grid.Row="0"  Grid.Column="0" />
+                                        </OnIdiom.Phone>
+                                        <OnIdiom.Tablet >
+                                            <Image HeightRequest="50" Source="{Binding advanceimage}" HorizontalOptions="End" VerticalOptions="Start" Margin="0,0,50,0"  Grid.Row="0"  Grid.Column="0" />
+                                        </OnIdiom.Tablet>
+                                    </OnIdiom>
+                                    <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="5*,5*,10*" ColumnDefinitions="2*, 11*">
+
+                                    <Label Style="{StaticResource gooutanddayofftitle}"
+                                              Text="狀態 :" Grid.Row="0" Grid.Column="0"></Label>
+                                    <Label 
+                                             Style="{StaticResource gooutanddayoffcontent}"
+                                             TextColor="{Binding statuscolor}"
+                                            Text="{Binding status}"
+                                                HorizontalOptions="Start" Grid.Row="0" Grid.Column="1"></Label>
+                                    <Label  Style="{StaticResource gooutanddayofftitle}"
+                                            Text="時間 :" Grid.Row="1" Grid.Column="0"></Label>
+                                    <Label Style="{StaticResource gooutanddayoffcontent}"
+                                            Text="{Binding createdTime}"
+                                               HorizontalOptions="Start"
+                                            Grid.Row="1" Grid.Column="1"></Label>
+                                    <Label  Style="{StaticResource gooutanddayofftitle}"
+                                            Text="地點 :" Grid.Row="2" Grid.Column="0"></Label>
+                                    <Label  Style="{StaticResource gooutanddayoffcontent}"
+                                                HorizontalOptions="Start"
+                                             Text="{Binding address}" Grid.Row="2" Grid.Column="1"></Label>
+                                  
+                                   
+                                </Grid>
+                            </Grid>
+                            </Grid>
+                        </StackLayout>
+
+                    </Frame>
+
+                </Grid>
+            </DataTemplate>
+            <local:RecordsSelector x:Key="RecordSelector"
+                                             WorkRecords="{StaticResource WorkRecord}"
+                                             DayOffRecords="{StaticResource DayOffRecord}"
+                                             GoOutRecords="{StaticResource AdvanceGoOutRecord}"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <!--內容樣式設定結束-->
+
+
+ <StackLayout Orientation="Vertical" >
+        <Label Text="查看紀錄" Style="{StaticResource titletext}" Margin="10,20,10,10" HorizontalOptions="Center" ></Label>
+        <BoxView BackgroundColor="Gray" HeightRequest="1"  VerticalOptions="Center" Margin="10,0,10,0"  ></BoxView>
+        <Frame BackgroundColor="White" HorizontalOptions="FillAndExpand" Margin="10,10,10,0" >
+
+            <Frame.HasShadow>
+                <OnPlatform x:TypeArguments="x:Boolean">
+                    <On Platform="iOS" Value="False" />
+                    <On Platform="Android" Value="True" />
+                </OnPlatform>
+            </Frame.HasShadow>
+            <StackLayout>
+                <Label></Label>
+                <Image  Grid.Row="0" Margin="0,10,0,0" Grid.Column="0" Source="date" HorizontalOptions="Start"  HeightRequest="30"></Image>
+                <StackLayout Margin="35,-36,0,0">
+                        <DatePicker   Grid.Row="0" Grid.Column="1" x:Name="_DatePicker" DateSelected="DatePicker_DateSelected"  Style="{StaticResource date}" Margin="0,-4,0,0" />
+                        <BoxView BackgroundColor="#807D7D" x:Name="dateline" HeightRequest="1" Margin="0,-5,0,0" />
+                    </StackLayout>
+                <ImageButton Clicked="RecordChooseButton"  Grid.Row="0" Grid.Column="2"  Style="{StaticResource select}" ></ImageButton>
+                <StackLayout Orientation="Horizontal" Margin="0,10,0,0" HorizontalOptions="Center">
+                        <StackLayout>
+                            <Label Text="日" Style="{StaticResource datetitle}"></Label>
+                            <Button x:Name="sun" Style="{StaticResource datebutton}" Clicked="SunButton"></Button>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="一" Style="{StaticResource datetitle}"></Label>
+                            <Button x:Name="mon"  Style="{StaticResource datebutton}" Clicked="MonButton" ></Button>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="二"  Style="{StaticResource datetitle}"></Label>
+                            <Button x:Name="tue" Style="{StaticResource datebutton}"  Clicked="TueButton"></Button>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="三"  Style="{StaticResource datetitle}"></Label>
+                            <Button x:Name="wed" Style="{StaticResource datebutton}"  Clicked="WedButton"></Button>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="四"  Style="{StaticResource datetitle}"></Label>
+                            <Button x:Name="thu"  Style="{StaticResource datebutton}"  Clicked="ThuButton"></Button>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="五"  Style="{StaticResource datetitle}"></Label>
+                            <Button x:Name="fri" Style="{StaticResource datebutton}"  Clicked="FriButton"></Button>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="六"  Style="{StaticResource datetitle}"></Label>
+                            <Button x:Name="sat" Style="{StaticResource datebutton}"  Clicked="SatButton"></Button>
+                        </StackLayout>
+                    </StackLayout>
+                    <Label x:Name="RecordTitle" Style="{StaticResource gooutanddayoff}" CharacterSpacing="12" Text="打卡紀錄"/>
+                </StackLayout>
+        </Frame>
+        <CollectionView
+                        x:Name="Worklist"
+                        Grid.Row="1"
+                         Style="{StaticResource Collection}"
+                        ItemsSource="{Binding Record}"
+                        ItemTemplate="{StaticResource RecordSelector}"
+                        >
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" />
+                        </CollectionView.ItemsLayout>
+                    </CollectionView>
+      
+    </StackLayout>
+
+
+</ContentPage>

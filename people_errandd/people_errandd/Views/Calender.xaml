@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="people_errandd.Views.Calender"
+             BackgroundColor="#EDEEEF">
+    <NavigationPage.TitleView>
+        <Label Text="行事曆" TextColor="#555555" FontSize="20" HorizontalTextAlignment="Center"  FontAttributes="Bold"  VerticalTextAlignment="Center" Margin="-15,0,0,0"></Label>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+    <Style x:Key="titletext" TargetType="Label">
+        <Setter Property="TextColor" Value="#555555" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="18" />
+    </Style>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <StackLayout>
+            <Label Text="行事曆" Style="{StaticResource titletext}" Margin="10,20,10,10" HorizontalOptions="Center" ></Label>
+            <BoxView BackgroundColor="Gray" HeightRequest="1"  VerticalOptions="Center" Margin="10,0,10,0"  ></BoxView>
+            <StackLayout Margin="0,250,0,0">
+            <Label Text="開發中"
+                   FontSize="28"
+                   TextColor="#555555"
+                   FontAttributes="Bold"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+            <Label Text="敬請期待 ! "
+                   FontSize="28"
+                   TextColor="#555555"
+                   FontAttributes="Bold"
+                    VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                 />
+        </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

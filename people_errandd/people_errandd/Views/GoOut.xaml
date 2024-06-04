@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="people_errandd.Views.GoOut"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" 
+             BackgroundColor="#EDEEEF">
+    <!--最上面Navigation標題-->
+    <NavigationPage.TitleView>
+        <Label Text="公出申請" TextColor="#555555" FontSize="18" HorizontalTextAlignment="Center"  FontAttributes="Bold"  VerticalTextAlignment="Center" Margin="-15,0,0,0"></Label>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <!--內容樣式設定-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="frame" TargetType="Frame">
+                <Setter Property="Margin" Value="0,20,0,0" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="titletext" TargetType="Label">
+                <Setter Property="TextColor" Value="#555555" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+            <Style x:Key="date" TargetType="DatePicker">
+                <Setter Property="WidthRequest" Value="50" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="10,0,0,0" />
+                <Setter Property="TextColor" Value="#5E709B" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="Format" Value="MM/dd" />
+            </Style>
+            <Style x:Key="time" TargetType="TimePicker">
+                <Setter Property="Margin" Value="0,0,0,0" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="WidthRequest" Value="100" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="#5E709B" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Format" Value="t" />
+            </Style>
+            <Style x:Key="editor" TargetType="Editor">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="TextColor" Value="#5E709B" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Keyboard" Value="Chat" />
+            </Style>
+            <Style x:Key="entry" TargetType="Entry">
+                <Setter Property="ClearButtonVisibility" Value="WhileEditing" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Margin" Value="0,0,15,0" />
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="#5E709B" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            <Style x:Key="button" TargetType="Button">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="BackgroundColor" Value="#5C76B1"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="Margin" Value="0,20,0,280"/>
+                <Setter Property="Text" Value="提出申請"/>
+            </Style>
+            <ControlTemplate x:Key="RadioButtonTemplate">
+            <Frame BorderColor="#F3F2F1"
+                   BackgroundColor="#F3F2F1"
+                   HasShadow="False"
+                   CornerRadius="10"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"
+                   Padding="0,0,0,10">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CheckedStates">
+                            <VisualState x:Name="Checked">
+                                <VisualState.Setters>
+                                     <Setter Property="BackgroundColor" Value="#FFCF80" />
+                                        <Setter TargetName="check" Property="Opacity" Value="1" />
+                                    </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Unchecked">
+                                <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                                        <Setter TargetName="check" Property="Opacity" Value="0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+                    <Grid Margin="4"
+                      WidthRequest="100">
+                    <Grid WidthRequest="18"
+                          HeightRequest="18"
+                          HorizontalOptions="End"
+                          VerticalOptions="Start">
+                            <Ellipse Stroke="#FFCF80"
+                                 Fill="White"
+                                 WidthRequest="16"
+                                 HeightRequest="16"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+                        <Ellipse x:Name="check"
+                                 Stroke="#FFCF80"
+                                 Fill="#FFCF80"
+                                 WidthRequest="8"
+                                 HeightRequest="8"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+                    </Grid>
+                    <ContentPresenter />
+                </Grid>
+            </Frame>
+            </ControlTemplate>
+
+            <Style TargetType="RadioButton">
+                <Setter Property="ControlTemplate" Value="{StaticResource RadioButtonTemplate}" />
+            </Style>
+            <Style x:Key="rdimage" TargetType="Image">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HeightRequest" Value="70" />
+                <Setter Property="Margin" Value="0,20,0,0" />
+            </Style>
+            <Style x:Key="rdtitle" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="0,0,0,0" />
+                <Setter Property="TextColor" Value="#555555" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="transportimage" TargetType="Image">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="Margin" Value="0,10,0,0" />
+            </Style>
+            <Style x:Key="transporttitle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                
+                <Setter Property="TextColor" Value="#555555" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <!--內容樣式設定結束-->
+
+
+        <ScrollView VerticalScrollBarVisibility="Never">
+        <StackLayout>
+         
+            <StackLayout Orientation="Horizontal" Margin="20,20,0,0">
+                <!--*-->               
+                <Label Text="公出類型" Style="{StaticResource titletext}"  Margin="0,0,0,10"></Label>
+                <Label Text="" x:Name="goouttype"  Style="{StaticResource titletext}" TextColor="#5E709B" FontSize="14" Margin="2,2,0,10"></Label>
+                <!--假別-->
+            </StackLayout>
+            <ScrollView Orientation="Horizontal" Margin="20,10,0,-40" HorizontalScrollBarVisibility="Never">
+
+                    <StackLayout Orientation="Horizontal" >
+                    <RadioButton Value="拜訪客戶" CheckedChanged="VistitClient" HeightRequest="200" WidthRequest="150"  Margin="0,0,-25,0">
+                            <RadioButton.Content>
+                                <StackLayout>
+                                    <Image Source="visit.png" Style="{StaticResource rdimage}"/>
+                                <Label Text="拜訪客戶" x:Name="VistitClientText" Style="{StaticResource rdtitle}" />
+
+                                </StackLayout>
+                            </RadioButton.Content>
+                        </RadioButton>
+                    <RadioButton Value="拜訪廠商" CheckedChanged="VistitManuacturer" HeightRequest="200" WidthRequest="150" Margin="0,0,-25,0">
+                        <RadioButton.Content>
+                            <StackLayout>
+                                <Image Source="visit.png" Style="{StaticResource rdimage}"/>
+                                <Label Text="拜訪廠商" x:Name="VistitManuacturerText" Style="{StaticResource rdtitle}" />
+                            </StackLayout>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <RadioButton Value="Demo" CheckedChanged="Demo" HeightRequest="200" WidthRequest="150" Margin="0,0,-25,0">
+                            <RadioButton.Content>
+                                <StackLayout>
+                                    <Image Source="demo.png" Style="{StaticResource rdimage}"/>
+                                <Label Text="Demo" x:Name="DemoText" Style="{StaticResource rdtitle}"/>
+
+                                </StackLayout>
+                            </RadioButton.Content>
+                        </RadioButton>
+                    <RadioButton Value="參加活動" CheckedChanged="ParticipateActivity" HeightRequest="200" WidthRequest="150" Margin="0,0,-25,0">
+                            <RadioButton.Content>
+                                <StackLayout>
+                                    <Image Source="party.png" Style="{StaticResource rdimage}" />
+                                <Label Text="參加活動" x:Name="ParticipateActivityText" Style="{StaticResource rdtitle}"/>
+
+                                </StackLayout>
+                            </RadioButton.Content>
+                        </RadioButton>
+                    <RadioButton Value="會議" CheckedChanged="Meeting" HeightRequest="200" WidthRequest="150" Margin="0,0,-25,0">
+                            <RadioButton.Content>
+                                <StackLayout>
+                                    <Image Source="meeting.png" Style="{StaticResource rdimage}"/>
+                                <Label Text="會議"  x:Name="MeetingText" Style="{StaticResource rdtitle}"/>
+
+                                </StackLayout>
+                            </RadioButton.Content>
+                        </RadioButton>
+                    <RadioButton Value="客戶服務" CheckedChanged="CustomerService" HeightRequest="200" WidthRequest="150" Margin="0,0,-25,0">
+                            <RadioButton.Content>
+                                <StackLayout >
+                                    <Image Source="service.png" Style="{StaticResource rdimage}" />
+                                <Label Text="客戶服務" x:Name="CustomerServiceText" Style="{StaticResource rdtitle}"/>
+
+                                </StackLayout>
+                            </RadioButton.Content>
+                        </RadioButton>
+                    <RadioButton Value="其他" CheckedChanged="Other" HeightRequest="200" WidthRequest="150" Margin="0,0,-25,0">
+                        <RadioButton.Content>
+                            <StackLayout >
+                                <Image Source="more1.png" Style="{StaticResource rdimage}" />
+                                <Label Text="其他" x:Name="OtherText" Style="{StaticResource rdtitle}"/>
+
+                            </StackLayout>
+                        </RadioButton.Content>
+                    </RadioButton>
+
+                </StackLayout>
+            </ScrollView>
+                <Frame BackgroundColor="White" HasShadow="False"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" CornerRadius="30" Margin="0,0,0,0">
+                   
+                        <StackLayout >
+                    <ScrollView >
+                        <StackLayout>
+                        <StackLayout>
+                            <StackLayout.Margin>
+                                <OnIdiom x:TypeArguments="Thickness">
+                                    <OnIdiom.Phone>0,0,0,0</OnIdiom.Phone>
+                                    <OnIdiom.Tablet>0,10,0,10</OnIdiom.Tablet>
+                                </OnIdiom>
+                            </StackLayout.Margin>
+                            <Label  HorizontalOptions="Start" Margin="0,10,0,0"  Text="整天"  Style="{StaticResource titletext}"></Label>
+                        <!--all day文字-->
+                        <!--all day按鈕-->
+                        <Switch HorizontalOptions="End" x:Name="AlldaySwitch" Toggled="AlldaySwitch_Toggled" Margin="0,-30,0,0" OnColor="#A3B3DB" ThumbColor="#5E709B"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout.Margin>
+                                <OnIdiom x:TypeArguments="Thickness">
+                                    <OnIdiom.Phone>0,0,0,5</OnIdiom.Phone>
+                                    <OnIdiom.Tablet>0,10,0,10</OnIdiom.Tablet>
+                                </OnIdiom>
+                            </StackLayout.Margin>
+                            <!--開始框架-->
+                            <StackLayout Margin="0,0,0,0">
+                                <!--*開始水平呈現-->
+
+                                <!--*-->
+                                <Label Text="開始" Style="{StaticResource titletext}"></Label>
+
+                                <!--開始-->
+                                <Frame CornerRadius="5" Padding="0"  HeightRequest="45" WidthRequest="600" BorderColor="#A8A8A8" BackgroundColor="White"  HasShadow="False" Margin="0,0,0,0">
+                                    <StackLayout Grid.Row="0" Orientation="Horizontal" >
+                                        <DatePicker Grid.Row="1" x:Name="startDatePicker" Style="{StaticResource date}"/>
+                                        <!--開始日期選擇-->
+
+                                        <TimePicker Grid.Row="2" x:Name="startTimePicker" Style="{StaticResource time}" />
+                                    </StackLayout>
+                                </Frame>
+                                <!--開始時間選擇-->
+                            </StackLayout>
+
+                            <!--結束框架-->
+                            <StackLayout>
+
+                                <!--*結束水平呈現-->
+
+                                <!--*-->
+                                <Label Text="結束" Style="{StaticResource titletext}" Margin="0,0,0,0"></Label>
+
+                                <!--結束-->
+
+                                <Frame CornerRadius="5" Padding="0"  HeightRequest="45" WidthRequest="600" BorderColor="#A8A8A8" BackgroundColor="White"  HasShadow="False" >
+                                    <StackLayout Grid.Row="0" Orientation="Horizontal" >
+                                        <DatePicker Grid.Row="1" x:Name="endDatePicker"
+                            Style="{StaticResource date}"
+                            MinimumDate="{Binding Source={x:Reference startDatePicker},Path=Date}"
+                            />
+                                        <!--結束日期選擇(需小於開始日期)-->
+                                        <TimePicker Grid.Row="2" x:Name="endTimePicker" Style="{StaticResource time}" />
+                                        <!--結束時間選擇-->
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <!--地點框架-->
+                        <StackLayout >
+                            <StackLayout.Margin>
+                                <OnIdiom x:TypeArguments="Thickness">
+                                    <OnIdiom.Phone>0,0,0,5</OnIdiom.Phone>
+                                    <OnIdiom.Tablet>0,10,0,10</OnIdiom.Tablet>
+                                </OnIdiom>
+                            </StackLayout.Margin>
+                            <StackLayout Grid.Row="0" Orientation="Horizontal">
+                                <!--*地點水平呈現-->
+
+                                <!--*-->
+                                <Label Text="地點" Style="{StaticResource titletext}"></Label>
+                                <!--地點-->
+                            </StackLayout>
+                            <Frame CornerRadius="5" Padding="0,5,5,5"  HeightRequest="45" HorizontalOptions="FillAndExpand" BorderColor="#A8A8A8" BackgroundColor="White" HasShadow="False" Margin="0,0,0,0">
+                                <StackLayout Orientation="Horizontal">
+                                <Image Source="location" Margin="10,0,0,0" HeightRequest="25"/>
+                                <Entry Grid.Row="1" x:Name="locationEntry" Style="{StaticResource entry}" Margin="10,0,0,0"></Entry>
+                                <!--地點輸入-->
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+
+
+                        <!--事由框架-->
+                        <StackLayout >
+                            <StackLayout.Margin>
+                                <OnIdiom x:TypeArguments="Thickness">
+                                    <OnIdiom.Phone>0,0,0,5</OnIdiom.Phone>
+                                    <OnIdiom.Tablet>0,10,0,10</OnIdiom.Tablet>
+                                </OnIdiom>
+                            </StackLayout.Margin>
+                            <!--*事由水平呈現-->
+                            <!--*-->
+                            <Label Text="事由" Style="{StaticResource titletext}"></Label>
+                            <!--事由-->
+
+                            <Frame CornerRadius="5" Padding="0,5,0,5"  HeightRequest="105" HorizontalOptions="FillAndExpand" BorderColor="#A8A8A8" BackgroundColor="White" HasShadow="False" >
+                                <Editor Grid.Row="1" Style="{StaticResource editor}" Margin="10,0,10,0" x:Name="reasonEntry"></Editor>
+                                <!--事由輸入-->
+                            </Frame>
+                        </StackLayout>
+                     <!--
+                        <StackLayout Margin="0,0,0,5">
+                            <StackLayout Grid.Row="0" Orientation="Horizontal">
+                                <Label Text="交通工具" Style="{StaticResource titletext}"></Label>
+                            </StackLayout>
+                            <ScrollView Orientation="Horizontal" Margin="0,5,0,0" HorizontalScrollBarVisibility="Never">
+                                <StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" >
+                                        <RadioButton Value="機車" HeightRequest="95" WidthRequest="95">
+                                            <RadioButton.Content>
+                                                <StackLayout>
+                                                    <Image Source="scooter.png" Style="{StaticResource transportimage}"/>
+                                                    <Label Text="機車" Style="{StaticResource transporttitle}" />
+
+                                                </StackLayout>
+                                            </RadioButton.Content>
+                                        </RadioButton>
+                                        <RadioButton Value="汽車" HeightRequest="95" WidthRequest="95">
+                                            <RadioButton.Content>
+                                                <StackLayout>
+                                                    <Image Source="car1.png" Style="{StaticResource transportimage}"/>
+                                                    <Label Text="汽車" Style="{StaticResource transporttitle}"/>
+
+                                                </StackLayout>
+                                            </RadioButton.Content>
+                                        </RadioButton>
+                                        <RadioButton Value="計程車" HeightRequest="95" WidthRequest="95">
+                                            <RadioButton.Content>
+                                                <StackLayout>
+                                                    <Image Source="taxi.png" Style="{StaticResource transportimage}" />
+                                                    <Label Text="計程車" Style="{StaticResource transporttitle}"/>
+
+                                                </StackLayout>
+                                            </RadioButton.Content>
+                                        </RadioButton>
+                                        <RadioButton Value="UBER" HeightRequest="95" WidthRequest="95">
+                                            <RadioButton.Content>
+                                                <StackLayout>
+                                                    <Image Source="u.png" Style="{StaticResource transportimage}"/>
+                                                    <Label Text="UBER" Style="{StaticResource transporttitle}"/>
+
+                                                </StackLayout>
+                                            </RadioButton.Content>
+                                        </RadioButton>
+                                        <RadioButton Value="公車捷運" HeightRequest="95" WidthRequest="95">
+                                            <RadioButton.Content>
+                                                <StackLayout >
+                                                    <Image Source="bus.png" Style="{StaticResource transportimage}"/>
+                                                    <Label Text="公車捷運" Style="{StaticResource transporttitle}"/>
+
+                                                </StackLayout>
+                                            </RadioButton.Content>
+                                        </RadioButton>
+                                        <RadioButton Value="台鐵" HeightRequest="95" WidthRequest="95">
+                                            <RadioButton.Content>
+                                                <StackLayout >
+                                                    <Image Source="railroad.png" Style="{StaticResource transportimage}"/>
+                                                    <Label Text="台鐵" Style="{StaticResource transporttitle}"/>
+
+                                                </StackLayout>
+                                            </RadioButton.Content>
+                                        </RadioButton>
+                                        <RadioButton Value="高鐵" HeightRequest="95" WidthRequest="95">
+                                            <RadioButton.Content>
+                                                <StackLayout >
+                                                    <Image Source="train.png" Style="{StaticResource transportimage}"/>
+                                                    <Label Text="高鐵" Style="{StaticResource transporttitle}"/>
+
+                                                </StackLayout>
+                                            </RadioButton.Content>
+                                        </RadioButton>
+                                        <RadioButton Value="飛機" HeightRequest="95" WidthRequest="95">
+                                            <RadioButton.Content>
+                                                <StackLayout >
+                                                    <Image Source="plane.png" Style="{StaticResource transportimage}"/>
+                                                    <Label Text="飛機" Style="{StaticResource transporttitle}"/>
+
+                                                </StackLayout>
+                                            </RadioButton.Content>
+                                        </RadioButton>
+                                        <RadioButton Value="其他" HeightRequest="95" WidthRequest="95">
+                                            <RadioButton.Content>
+                                                <StackLayout >
+                                                    <Image Source="more1.png" Style="{StaticResource transportimage}"/>
+                                                    <Label Text="其他" Style="{StaticResource transporttitle}"/>
+                                                </StackLayout>
+                                            </RadioButton.Content>
+                                        </RadioButton>
+                                    </StackLayout>
+
+                                </StackLayout>
+                            </ScrollView>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"  Margin="0,0,0,5">
+                            <StackLayout Margin="0,0,0,0">
+                                <Label Text="自用車號" Style="{StaticResource titletext}"></Label>
+                                <Frame CornerRadius="5" Padding="0"  HeightRequest="45" WidthRequest="300" BorderColor="#A8A8A8" BackgroundColor="White"  HasShadow="False" Margin="0,0,0,0">
+                                    <StackLayout Grid.Row="0" Orientation="Horizontal" >
+                                        <Entry Grid.Row="1"  Style="{StaticResource entry}" WidthRequest="145" Margin="10,0,10,0"></Entry>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Text="公用車號" Style="{StaticResource titletext}" Margin="0,0,0,0"></Label>
+                                <Frame CornerRadius="5" Padding="0"  HeightRequest="45"  WidthRequest="300" BorderColor="#A8A8A8" BackgroundColor="White"  HasShadow="False" >
+                                    <StackLayout Grid.Row="0" Orientation="Horizontal" >
+                                        <Entry Grid.Row="1" Style="{StaticResource entry}" WidthRequest="145" Margin="10,0,10,0"></Entry>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+                        -->
+                        <Button  Grid.Row="4" Style="{StaticResource button}" Clicked="EnterButton" >
+                            <Button.Margin>
+                                <OnIdiom x:TypeArguments="Thickness">
+                                    <OnIdiom.Phone>0,10,0,5</OnIdiom.Phone>
+                                    <OnIdiom.Tablet>0,20,0,20</OnIdiom.Tablet>
+                                </OnIdiom>
+                            </Button.Margin>
+                        </Button>
+                        </StackLayout>
+                    </ScrollView>
+                    </StackLayout>
+                
+            </Frame>
+        </StackLayout>
+        </ScrollView>
+
+
+
+
+</ContentPage>
